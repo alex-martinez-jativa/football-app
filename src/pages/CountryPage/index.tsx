@@ -6,10 +6,11 @@ import Card from "../../components/Card";
 import Item from "../../components/Item";
 import Title from "../../components/Title";
 import jrSoccerImage from "../../images/jr_soccer.svg";
-import { leaguesService } from "../../domain/services/leagues-services";
 import { League } from "../../domain/models/League";
 import { Typography } from "@material-ui/core";
-import useFetch from "../../hooks/useFetch";
+import { useDispatch, useSelector } from "react-redux";
+import getLeaguesAction from "../../redux/actions/getLeaguesAction";
+import { IInitialState } from "../../redux/reducers/leaguesReducer";
 
 const useStyles = makeStyles((theme: Theme) => ({
   header: {
@@ -73,35 +74,41 @@ const countrys = [
 const CountryPage: React.FC = () => {
   const classes = useStyles();
   const refLeagues = React.useRef<HTMLDivElement | any>(null);
-  const [leagues, setLeagues] = React.useState<League[]>([]);
+
+  const dispatch = useDispatch();
+  const { leagues, loading }: any = useSelector<IInitialState | any>(
+    (state: IInitialState) => state.leagues
+  );
 
   const handleGetLeaguesByCountry = async (country: string) => {
-    /* const { countrys } = await leaguesService.getLeaguesByCountry(country); */
-    const { data, error, loading } = useFetch<League[]>(
-      leaguesService.getLeaguesByCountry(country)
-    );
-
-    setLeagues(data.countrys);
+    dispatch(getLeaguesAction(country));
     window.scrollTo({ behavior: "smooth", top: refLeagues.current.offsetTop });
   };
 
-  console.log(leagues);
+  console.log(loading);
 
-  return (
-    <>
+  const Header: React.FC = () => {
+    return (
       <Grid item xs={12} className={classes.header}>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <img src={jrSoccerImage} alt="player" className={classes.image} />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={4}>
           <Typography variant="h6">Las mejores ligas del mundo</Typography>
         </Grid>
       </Grid>
+    );
+  };
+
+  return (
+    <>
+      <Header />
       <Title title="Selecciona un país" />
       <Grid item xs={12} className={classes.cardsGrid}>
         {countrys.map((c) => {
           return (
             <Card
+              key={c.id}
               name={c.name}
               image={c.img}
               handleGetLeaguesByCountry={handleGetLeaguesByCountry}
@@ -110,11 +117,13 @@ const CountryPage: React.FC = () => {
         })}
       </Grid>
       <div ref={refLeagues}>
-        {leagues.length && <Title title="Selecciona una liga" />}
+        {leagues.length > 0 && <Title title="Selecciona una liga" />}
         <Grid item xs={12} className={classes.cardsGrid}>
-          {leagues &&
-            leagues.map((l) => {
-              return <Item text={l.strLeague} logo={l.strLogo} />;
+          {leagues.length > 0 &&
+            leagues.map((l: League) => {
+              return (
+                <Item key={l.idLeague} text={l.strLeague} logo={l.strLogo} />
+              );
             })}
         </Grid>
       </div>
