@@ -1,12 +1,12 @@
 import React from "react";
-import CountryPage from "../pages/CountryPage";
+import Home from "../pages/Home";
 import { Provider } from "react-redux";
 import store from "../redux/store";
 
 const App: React.FC = () => {
   return (
     <Provider store={store}>
-      <CountryPage />;
+      <Home />;
     </Provider>
   );
 };

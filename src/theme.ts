@@ -2,9 +2,10 @@ import { createMuiTheme } from "@material-ui/core/styles";
 
 const colors = {
   primary: "#30475e",
-  primaryLight: "#dddddd",
+  primaryLight: "#30475e",
   primaryDark: "#222831",
-  secondary: "#383e56",
+  secondary: "#f05454",
+  background: "#dddddd",
 };
 
 const theme = createMuiTheme({
@@ -17,9 +18,9 @@ const theme = createMuiTheme({
     secondary: {
       main: colors.secondary,
     },
-    /* background: {
+    background: {
       default: colors.background,
-    }, */
+    },
   },
 });
 

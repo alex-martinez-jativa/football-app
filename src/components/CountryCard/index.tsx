@@ -13,7 +13,7 @@ type Props = {
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
-    backgroundColor: theme.palette.primary.light,
+    backgroundColor: theme.palette.primary.dark,
     maxWidth: "10rem",
     minWidth: "10rem",
     display: "flex",
@@ -23,12 +23,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     borderRadius: "1rem",
     cursor: "pointer",
     margin: "1rem",
+    boxShadow: "0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%)",
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "3rem",
+      minWidth: "8rem",
+      maxWidth: "8rem",
+      // maxWidth: "3rem",
     },
   },
   title: {
     marginBottom: "1rem",
+    color: theme.palette.background.default,
   },
   image: {
     maxWidth: "100%",
@@ -37,7 +41,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const Card: React.FC<Props> = ({ name, image, handleGetLeaguesByCountry }) => {
+const CountryCard: React.FC<Props> = ({
+  name,
+  image,
+  handleGetLeaguesByCountry,
+}) => {
   const classes = useStyles();
   const handleOnClick = (country: string) => {
     handleGetLeaguesByCountry(country);
@@ -54,4 +62,4 @@ const Card: React.FC<Props> = ({ name, image, handleGetLeaguesByCountry }) => {
   );
 };
 
-export default Card;
+export default CountryCard;
