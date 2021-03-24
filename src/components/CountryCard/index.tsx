@@ -13,7 +13,7 @@ type Props = {
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.light,
     maxWidth: "10rem",
     minWidth: "10rem",
     display: "flex",

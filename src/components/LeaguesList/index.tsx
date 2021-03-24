@@ -23,13 +23,6 @@ const LeaguesList: React.FC = () => {
     (state: IInitialState) => state.leagues
   );
 
-  React.useEffect(() => {
-    function scrollBottom() {
-      window.scrollTo(0, 500);
-    }
-    scrollBottom();
-  });
-
   return (
     <>
       {leagues && leagues.length > 0 && <Title title="Selecciona una liga" />}

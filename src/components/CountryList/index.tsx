@@ -53,7 +53,11 @@ const countrys = [
   },
 ];
 
-const CountryList: React.FC = () => {
+interface ICountryList {
+  handleToggleShowSection: () => void;
+}
+
+const CountryList: React.FC<ICountryList> = ({ handleToggleShowSection }) => {
   const classes = useStyles();
 
   const [countryState, setCountryState] = React.useState<string>();
@@ -62,6 +66,7 @@ const CountryList: React.FC = () => {
   const handleGetLeaguesByCountry = (country: string) => {
     if (countryState !== country) {
       setCountryState(country);
+      handleToggleShowSection();
       dispatch(getLeaguesAction(country));
     } else {
       return;

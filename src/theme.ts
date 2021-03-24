@@ -1,11 +1,13 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
 const colors = {
-  primary: "#30475e",
-  primaryLight: "#30475e",
-  primaryDark: "#222831",
-  secondary: "#f05454",
-  background: "#dddddd",
+  primary: "#00796b",
+  primaryLight: "#48a999",
+  primaryDark: "#004c40",
+  secondary: "#8d6e63",
+  secondaryLight: "#be9c91",
+  secondaryDark: "#5f4339",
+  background: "#ffffff",
 };
 
 const theme = createMuiTheme({
@@ -17,9 +19,18 @@ const theme = createMuiTheme({
     },
     secondary: {
       main: colors.secondary,
+      light: colors.secondaryLight,
+      dark: colors.secondaryDark,
     },
     background: {
       default: colors.background,
+    },
+  },
+  overrides: {
+    MuiBadge: {
+      colorPrimary: {
+        backgroundColor: "#b71c1c",
+      },
     },
   },
 });

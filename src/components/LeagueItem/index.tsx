@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   logo: {
     maxWidth: "25%",
     marginRight: "0.5rem;",
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: theme.palette.primary.light,
     padding: "0.5rem",
     borderRadius: "1rem",
     [theme.breakpoints.down("sm")]: {
