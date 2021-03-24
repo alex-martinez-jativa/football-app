@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     margin: "1rem",
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "20rem",
-      minWidth: "20rem",
+      maxWidth: "25rem",
+      minWidth: "25rem",
     },
     "&:hover": {
       boxShadow: "0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%)",
@@ -51,7 +51,7 @@ interface IItemProps {
 const LeagueItem: React.FC<IItemProps> = ({ text, logo }) => {
   const classes = useStyles();
   return (
-    <Slide in={true} timeout={1000} direction="left">
+    <Slide in={true} timeout={500} direction="left">
       <Box className={classes.box}>
         <React.Fragment>
           <Typography variant="h6" className={classes.title}>
