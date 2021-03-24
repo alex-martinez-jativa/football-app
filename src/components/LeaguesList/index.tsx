@@ -19,12 +19,19 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const LeaguesList: React.FC = () => {
   const classes = useStyles();
-  const refLeagues = React.useRef<HTMLDivElement | any>(null);
   const { leagues }: any = useSelector<IInitialState | any>(
     (state: IInitialState) => state.leagues
   );
+
+  React.useEffect(() => {
+    function scrollBottom() {
+      window.scrollTo(0, 500);
+    }
+    scrollBottom();
+  });
+
   return (
-    <div ref={refLeagues}>
+    <>
       {leagues && leagues.length > 0 && <Title title="Selecciona una liga" />}
       <Grid item xs={12} className={classes.cardsGrid}>
         {leagues &&
@@ -39,7 +46,7 @@ const LeaguesList: React.FC = () => {
             );
           })}
       </Grid>
-    </div>
+    </>
   );
 };
 

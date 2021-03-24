@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme: Theme) => ({
     [theme.breakpoints.down("sm")]: {
       minWidth: "8rem",
       maxWidth: "8rem",
-      // maxWidth: "3rem",
     },
   },
   title: {
-    marginBottom: "1rem",
+    marginBottom: ".5rem",
+    marginTop: ".5rem",
     color: theme.palette.background.default,
   },
   image: {

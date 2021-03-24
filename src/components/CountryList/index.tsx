@@ -4,6 +4,8 @@ import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import CountryCard from "../CountryCard";
+import getLeaguesAction from "../../redux/actions/getLeaguesAction";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardsGrid: {
@@ -51,16 +53,19 @@ const countrys = [
   },
 ];
 
-interface ICountryListProps {
-  handleGetLeaguesByCountry: (c: string) => void;
-}
-
-const CountryList: React.FC<ICountryListProps> = ({
-  handleGetLeaguesByCountry,
-}) => {
+const CountryList: React.FC = () => {
   const classes = useStyles();
-  const handleOnClick = (c: string) => {
-    handleGetLeaguesByCountry(c);
+
+  const [countryState, setCountryState] = React.useState<string>();
+  const dispatch = useDispatch();
+
+  const handleGetLeaguesByCountry = (country: string) => {
+    if (countryState !== country) {
+      setCountryState(country);
+      dispatch(getLeaguesAction(country));
+    } else {
+      return;
+    }
   };
   return (
     <>
@@ -72,7 +77,9 @@ const CountryList: React.FC<ICountryListProps> = ({
               key={c.id}
               name={c.name}
               image={c.img}
-              handleGetLeaguesByCountry={() => handleOnClick(c.name)}
+              handleGetLeaguesByCountry={() =>
+                handleGetLeaguesByCountry(c.name)
+              }
             />
           );
         })}

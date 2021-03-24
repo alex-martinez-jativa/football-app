@@ -20,8 +20,8 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     margin: "1rem",
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "25rem",
-      minWidth: "25rem",
+      minWidth: "90%",
+      maxWidth: "90%",
     },
     "&:hover": {
       boxShadow: "0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%)",
