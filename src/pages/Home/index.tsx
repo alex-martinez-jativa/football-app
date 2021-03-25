@@ -2,20 +2,12 @@ import * as React from "react";
 import CountryList from "../../components/CountryList";
 import LeaguesList from "../../components/LeaguesList";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import SingleLeague from "../../components/SingleLeague";
+import ContainerBar from "../../components/ContainerBar";
 
-const useStyles = makeStyles((theme: Theme) => ({
-  backGrid: {
-    display: "flex",
-    flexDirection: "row",
-    padding: "1rem 0 1rem 0.5rem",
-    alignItems: "center",
-    backgroundColor: theme.palette.primary.light,
-  },
+const useStyles = makeStyles(() => ({
   arrow: {
     cursor: "pointer",
     color: "#fafafa",
@@ -54,7 +46,7 @@ const Home: React.FC = () => {
   return (
     <>
       {isLeaguesSection() && (
-        <Grid item xs={12} className={classes.backGrid}>
+        <ContainerBar>
           <ArrowBackIosIcon onClick={handleGoBack} className={classes.arrow} />
           <Typography
             onClick={handleGoBack}
@@ -63,7 +55,7 @@ const Home: React.FC = () => {
           >
             Go back
           </Typography>
-        </Grid>
+        </ContainerBar>
       )}
       {isCountrysSection() && (
         <CountryList handleToggleShowSection={handleToggleShowSection} />
