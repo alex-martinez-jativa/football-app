@@ -74,7 +74,7 @@ const CountryList: React.FC<ICountryList> = ({ handleToggleShowSection }) => {
   };
   return (
     <>
-      <Title title="Selecciona un país" />
+      <Title title="Select your country" />
       <Grid item xs={12} className={classes.cardsGrid}>
         {countrys.map((c) => {
           return (

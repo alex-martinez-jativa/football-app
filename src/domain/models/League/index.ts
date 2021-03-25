@@ -1,6 +1,6 @@
 export interface League {
   idLeague: string;
-  idSoccerXML: null;
+  idSoccerXML: string;
   idAPIfootball: string;
   strSport: string;
   strLeague: string;
@@ -44,4 +44,12 @@ export interface League {
   strNaming: string;
   strComplete: string;
   strLocked: string;
+}
+
+export interface Leagues {
+  countrys: League[];
+}
+
+export interface SingleLeague {
+  leagues: League[];
 }

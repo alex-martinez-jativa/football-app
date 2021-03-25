@@ -1,5 +1,4 @@
 import * as React from "react";
-import Header from "../../components/Header";
 import CountryList from "../../components/CountryList";
 import LeaguesList from "../../components/LeaguesList";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -7,6 +6,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import SingleLeague from "../../components/SingleLeague";
 
 const useStyles = makeStyles((theme: Theme) => ({
   backGrid: {
@@ -18,33 +18,42 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   arrow: {
     cursor: "pointer",
+    color: "#fafafa",
   },
 }));
 
 const Home: React.FC = () => {
-  const [toggleShowSection, setToggleShowSection] = React.useState<string>(
-    "countrys"
-  );
-
   const classes = useStyles();
 
+  const [showCountrysSection, setShowCountrysSection] = React.useState<boolean>(
+    true
+  );
+  const [showLeaguesSection, setShowLeaguesSection] = React.useState<boolean>(
+    false
+  );
+
   const handleToggleShowSection = () => {
-    if (toggleShowSection === "countrys") {
-      setToggleShowSection("leagues");
+    if (showCountrysSection) {
+      setShowCountrysSection(false);
+      setShowLeaguesSection(true);
     }
-    if (toggleShowSection === "leagues") {
-      setToggleShowSection("countrys");
+    if (showLeaguesSection) {
+      setShowLeaguesSection(false);
+      setShowCountrysSection(true);
     }
   };
 
   const handleGoBack = () => {
-    setToggleShowSection("countrys");
+    setShowLeaguesSection(false);
+    setShowCountrysSection(true);
   };
+
+  const isLeaguesSection = () => showLeaguesSection && !showCountrysSection;
+  const isCountrysSection = () => showCountrysSection && !showLeaguesSection;
 
   return (
     <>
-      <Header />
-      {toggleShowSection === "leagues" && (
+      {isLeaguesSection() && (
         <Grid item xs={12} className={classes.backGrid}>
           <ArrowBackIosIcon onClick={handleGoBack} className={classes.arrow} />
           <Typography
@@ -56,10 +65,11 @@ const Home: React.FC = () => {
           </Typography>
         </Grid>
       )}
-      {toggleShowSection === "countrys" && (
+      {isCountrysSection() && (
         <CountryList handleToggleShowSection={handleToggleShowSection} />
       )}
-      {toggleShowSection === "leagues" && <LeaguesList />}
+      {isLeaguesSection() && <LeaguesList />}
+      {<SingleLeague />}
     </>
   );
 };

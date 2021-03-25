@@ -1,6 +1,6 @@
 import * as types from "../../actionTypes";
 import { Dispatch } from "redux";
-import { League } from "../../../domain/models/League";
+import { League, Leagues } from "../../../domain/models/League";
 import { leaguesService } from "../../../domain/services/leagues-services";
 
 const getLeaguesRequest = () => {
@@ -24,8 +24,10 @@ const getLeaguesAction = (country: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(getLeaguesRequest());
-      const res = await leaguesService.getLeaguesByCountry(country);
-      dispatch(getLeaguesSuccess(res.countrys));
+      const { countrys }: Leagues = await leaguesService.getLeaguesByCountry(
+        country
+      );
+      dispatch(getLeaguesSuccess(countrys));
     } catch (error) {
       dispatch(getLeaguesError());
     }
