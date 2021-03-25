@@ -17,7 +17,7 @@ interface IContainerBar {
   children: React.ReactElement;
 }
 
-const ContainerBar: React.FC = ({ children }) => {
+const ContainerBar: React.FC<IContainerBar> = ({ children }) => {
   const classes = useStyles();
   return (
     <Grid item xs={12} className={classes.backGrid}>

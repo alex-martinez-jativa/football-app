@@ -1,22 +1,12 @@
 import * as React from "react";
 import CountryList from "../../components/CountryList";
 import LeaguesList from "../../components/LeaguesList";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import Typography from "@material-ui/core/Typography";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import SingleLeague from "../../components/SingleLeague";
+import LeagueCard from "../../components/LeagueCard";
 import ContainerBar from "../../components/ContainerBar";
-
-const useStyles = makeStyles(() => ({
-  arrow: {
-    cursor: "pointer",
-    color: "#fafafa",
-  },
-}));
+import GoBack from "../../components/GoBack";
 
 const Home: React.FC = () => {
-  const classes = useStyles();
-
   const [showCountrysSection, setShowCountrysSection] = React.useState<boolean>(
     true
   );
@@ -47,21 +37,14 @@ const Home: React.FC = () => {
     <>
       {isLeaguesSection() && (
         <ContainerBar>
-          <ArrowBackIosIcon onClick={handleGoBack} className={classes.arrow} />
-          <Typography
-            onClick={handleGoBack}
-            className={classes.arrow}
-            variant="h6"
-          >
-            Go back
-          </Typography>
+          <GoBack handleGoBack={handleGoBack} />
         </ContainerBar>
       )}
       {isCountrysSection() && (
         <CountryList handleToggleShowSection={handleToggleShowSection} />
       )}
       {isLeaguesSection() && <LeaguesList />}
-      {<SingleLeague />}
+      <LeagueCard />
     </>
   );
 };
