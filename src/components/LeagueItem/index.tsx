@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
@@ -53,9 +54,11 @@ interface IItemProps {
 
 const LeagueItem: React.FC<IItemProps> = ({ text, logo, id }) => {
   const classes = useStyles();
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleGetLeague = (id: string) => {
     dispatch(getLeagueAction(id));
+    history.push(`/league/${id}`);
   };
   return (
     <Slide in={true} timeout={500} direction="left">

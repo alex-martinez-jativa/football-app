@@ -12,18 +12,28 @@ import Grid from "@material-ui/core/Grid";
 import { useSelector } from "react-redux";
 import { IInitialState } from "../../redux/reducers/leaguesReducer";
 import { NO_CARD_IMAGE } from "../../constants";
+import openExternalSite from "../../utils/open-external-site";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: "#c8e6c9",
+    width: "50rem",
+    minWidth: "50rem",
+    borderRadius: "1rem",
     [theme.breakpoints.down("sm")]: {
       width: "20rem",
+      minWidth: "10rem",
     },
   },
   image: {
+    // maxWidth: "50%",
     maxWidth: "100%",
     height: "auto",
-    padding: "0.5rem",
+    padding: "1rem",
+    margin: "0 auto",
+    [theme.breakpoints.down("sm")]: {
+      maxWidth: "100%",
+    },
   },
 }));
 
@@ -34,7 +44,9 @@ const LeagueCard: React.FC = () => {
     (state: IInitialState) => state.leagues
   );
 
-  debugger;
+  const handleGoToWebSite = (site: string) => {
+    openExternalSite(site);
+  };
 
   return (
     <>
@@ -51,7 +63,9 @@ const LeagueCard: React.FC = () => {
               <CardMedia
                 height="140"
                 component="img"
-                image={league.strLogo === null ? NO_CARD_IMAGE : league.strLogo}
+                image={
+                  league.strBanner === null ? NO_CARD_IMAGE : league.strBanner
+                }
                 title="league"
                 alt="league"
                 className={classes.image}
@@ -60,7 +74,12 @@ const LeagueCard: React.FC = () => {
                 <Typography gutterBottom variant="h5" component="h2">
                   {league.strLeague}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  align="justify"
+                >
                   {league.strDescriptionEN}
                 </Typography>
               </CardContent>
@@ -69,7 +88,11 @@ const LeagueCard: React.FC = () => {
               <Button size="small" color="primary">
                 Share
               </Button>
-              <Button size="small" color="primary">
+              <Button
+                size="small"
+                color="primary"
+                onClick={() => handleGoToWebSite(league.strWebsite)}
+              >
                 Learn More
               </Button>
             </CardActions>

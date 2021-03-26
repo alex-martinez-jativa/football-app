@@ -1,7 +1,6 @@
 import * as React from "react";
 import CountryList from "../../components/CountryList";
 import LeaguesList from "../../components/LeaguesList";
-import SingleLeague from "../../components/SingleLeague";
 import LeagueCard from "../../components/LeagueCard";
 import ContainerBar from "../../components/ContainerBar";
 import GoBack from "../../components/GoBack";

@@ -6,12 +6,15 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
 import theme from "./theme";
 import reportWebVitals from "./reportWebVitals";
+import { HashRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <ThemeProvider theme={theme}>
-    <CssBaseline />
-    <App />
-  </ThemeProvider>,
+  <HashRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </ThemeProvider>
+  </HashRouter>,
   document.getElementById("root")
 );
 
