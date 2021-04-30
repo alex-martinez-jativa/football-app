@@ -25,7 +25,7 @@ type ParamsType = {
   country: string;
 };
 
-const LeaguesList: React.FC = () => {
+const LeaguesListPage: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const { country } = useParams<ParamsType>();
@@ -67,4 +67,4 @@ const LeaguesList: React.FC = () => {
   );
 };
 
-export default LeaguesList;
+export default LeaguesListPage;

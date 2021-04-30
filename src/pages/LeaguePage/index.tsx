@@ -12,7 +12,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import Grid from "@material-ui/core/Grid";
-import Tooltip from "@material-ui/core/Tooltip";
 import { useSelector } from "react-redux";
 import { IInitialState } from "../../redux/reducers/leaguesReducer";
 import { NO_CARD_IMAGE } from "../../constants";
@@ -46,13 +45,17 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "auto",
     padding: "1rem",
     margin: "0 auto",
+    "&:hover": {
+      backgroundColor: theme.palette.primary.main,
+      opacity: "0.8",
+    },
     [theme.breakpoints.down("sm")]: {
       maxWidth: "100%",
     },
   },
 }));
 
-const LeagueCard: React.FC = () => {
+const LeaguePage: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
@@ -94,18 +97,16 @@ const LeagueCard: React.FC = () => {
           </Typography>
           <Card className={classes.root}>
             <CardActionArea>
-              <Tooltip title="Click to View Teams" arrow>
-                <CardMedia
-                  height="140"
-                  component="img"
-                  image={
-                    league.strBanner === null ? NO_CARD_IMAGE : league.strBanner
-                  }
-                  title="league"
-                  alt="league"
-                  className={classes.image}
-                />
-              </Tooltip>
+              <CardMedia
+                height="140"
+                component="img"
+                image={
+                  league.strBanner === null ? NO_CARD_IMAGE : league.strBanner
+                }
+                title="league"
+                alt="league"
+                className={classes.image}
+              />
               <CardContent>
                 <Typography gutterBottom variant="h6" component="h2">
                   {league.strLeague}
@@ -142,4 +143,4 @@ const LeagueCard: React.FC = () => {
   );
 };
 
-export default LeagueCard;
+export default LeaguePage;

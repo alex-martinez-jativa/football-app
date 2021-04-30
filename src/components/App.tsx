@@ -4,8 +4,8 @@ import { Provider } from "react-redux";
 import store from "../redux/store";
 import Home from "../pages/Home";
 import Header from "../components/Header";
-import LeagueCard from "../pages/LeagueCard";
-import LeaguesList from "../pages/LeaguesList";
+import LeaguePage from "../pages/LeaguePage";
+import LeaguesListPage from "../pages/LeaguesListPage";
 
 const App: React.FC = () => {
   return (
@@ -14,8 +14,8 @@ const App: React.FC = () => {
       <Switch>
         <Route exact path="/" render={() => <Home />} />
         <Route path="/home" render={() => <Home />} />
-        <Route path="/:country/leagues" render={() => <LeaguesList />} />
-        <Route path="/league/:id" render={() => <LeagueCard />} />
+        <Route path="/:country/leagues" render={() => <LeaguesListPage />} />
+        <Route path="/league/:id" render={() => <LeaguePage />} />
       </Switch>
     </Provider>
   );
