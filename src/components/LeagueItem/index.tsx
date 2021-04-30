@@ -5,8 +5,6 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import Box from "@material-ui/core/Box";
 import Slide from "@material-ui/core/Slide";
-import { useDispatch } from "react-redux";
-import getLeagueAction from "../../redux/actions/getLeagueAction";
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
@@ -55,9 +53,7 @@ interface IItemProps {
 const LeagueItem: React.FC<IItemProps> = ({ text, logo, id }) => {
   const classes = useStyles();
   const history = useHistory();
-  const dispatch = useDispatch();
   const handleGetLeague = (id: string) => {
-    dispatch(getLeagueAction(id));
     history.push(`/league/${id}`);
   };
   return (

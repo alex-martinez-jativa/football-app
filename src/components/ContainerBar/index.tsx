@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface IContainerBar {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 const ContainerBar: React.FC<IContainerBar> = ({ children }) => {

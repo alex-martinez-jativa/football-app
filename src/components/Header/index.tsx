@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import AppBarComponent from "../AppBar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   title: {
     color: theme.palette.background.default,
+    cursor: "pointer",
   },
 }));
 
@@ -24,16 +26,29 @@ const Header: React.FC = () => {
   const classes = useStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("sm"));
+
+  const history = useHistory();
+
+  const handleGoToHome = () => {
+    if (history.location.pathname !== "/") {
+      history.push("/");
+    }
+  };
+
   return (
     <>
       {matches && (
         <Grid item xs={12} className={classes.container}>
-          <Typography variant="h6" className={classes.title}>
+          <Typography
+            variant="h6"
+            className={classes.title}
+            onClick={handleGoToHome}
+          >
             The Football App
           </Typography>
         </Grid>
       )}
-      <AppBarComponent />
+      <AppBarComponent goToHome={handleGoToHome} />
     </>
   );
 };

@@ -13,7 +13,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import SportsSoccerIcon from "@material-ui/icons/SportsSoccer";
-import jrSoccerImage from "../../images/jr_soccer.svg";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: "none",
+    cursor: "pointer",
     [theme.breakpoints.up("sm")]: {
       display: "block",
     },
@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -79,7 +78,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppBarComponent: React.FC = () => {
+interface IAppBarComponent {
+  goToHome: () => void;
+}
+
+const AppBarComponent: React.FC<IAppBarComponent> = ({ goToHome }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -102,6 +105,10 @@ const AppBarComponent: React.FC = () => {
 
   const handleMobileMenuOpen = (event: any) => {
     setMobileMoreAnchorEl(event.currentTarget);
+  };
+
+  const handleGoToHome = () => {
+    goToHome();
   };
 
   const menuId = "primary-search-account-menu";
@@ -165,7 +172,12 @@ const AppBarComponent: React.FC = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            noWrap
+            onClick={handleGoToHome}
+          >
             The Football App
           </Typography>
           <div className={classes.search}>

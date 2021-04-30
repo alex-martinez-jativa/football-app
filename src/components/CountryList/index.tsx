@@ -1,11 +1,10 @@
 import * as React from "react";
+import { useHistory } from "react-router-dom";
 import Title from "../Title";
 import Grid from "@material-ui/core/Grid";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import CountryCard from "../CountryCard";
-import getLeaguesAction from "../../redux/actions/getLeaguesAction";
-import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme: Theme) => ({
   cardsGrid: {
@@ -53,24 +52,12 @@ const countrys = [
   },
 ];
 
-interface ICountryList {
-  handleToggleShowSection: () => void;
-}
-
-const CountryList: React.FC<ICountryList> = ({ handleToggleShowSection }) => {
+const CountryList: React.FC = () => {
   const classes = useStyles();
-
-  const [countryState, setCountryState] = React.useState<string>();
-  const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleGetLeaguesByCountry = (country: string) => {
-    if (countryState !== country) {
-      setCountryState(country);
-      handleToggleShowSection();
-      dispatch(getLeaguesAction(country));
-    } else {
-      return;
-    }
+    history.push(`/${country}/leagues`);
   };
   return (
     <>
