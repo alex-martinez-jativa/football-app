@@ -74,6 +74,10 @@ const LeaguePage: React.FC = () => {
     history.goBack();
   };
 
+  const handleGoToTeamsPage = (leagueId: string) => {
+    history.push(`/${leagueId}/teams`);
+  };
+
   React.useEffect(() => {
     dispatch(getLeagueAction(id));
   }, [dispatch, id]);
@@ -90,7 +94,7 @@ const LeaguePage: React.FC = () => {
   return (
     <>
       <GoBackComponent goBack={handleGoBack} />
-      {league.idLeague && !loading && (
+      {!loading && league.idLeague && (
         <Grid item xs={12} className={classes.container}>
           <Typography className={classes.title} variant={handleTitleVariant()}>
             {league.strLeagueAlternate}
@@ -98,6 +102,7 @@ const LeaguePage: React.FC = () => {
           <Card className={classes.root}>
             <CardActionArea>
               <CardMedia
+                onClick={() => handleGoToTeamsPage(league.idLeague)}
                 height="140"
                 component="img"
                 image={
@@ -122,7 +127,11 @@ const LeaguePage: React.FC = () => {
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button size="small" color="primary">
+              <Button
+                size="small"
+                color="primary"
+                onClick={() => handleGoToTeamsPage(league.idLeague)}
+              >
                 View Teams
               </Button>
               <Button

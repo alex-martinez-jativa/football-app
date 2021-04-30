@@ -1,7 +1,6 @@
 import { http } from "../../http";
-import { League, Leagues, SingleLeague } from "../../../domain/models/League";
-
-const API_URL = "https://www.thesportsdb.com/api/v1/json/1";
+import { Leagues, SingleLeague } from "../../../domain/models/League";
+import { API_URL } from "../../../constants";
 
 export const leaguesRepository = {
   getLeaguesByCountry: async (country: string) => {
