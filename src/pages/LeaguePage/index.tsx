@@ -99,10 +99,12 @@ const LeaguePage: React.FC = () => {
           <Typography className={classes.title} variant={handleTitleVariant()}>
             {league.strLeagueAlternate}
           </Typography>
-          <Card className={classes.root}>
+          <Card
+            className={classes.root}
+            onClick={() => handleGoToTeamsPage(league.idLeague)}
+          >
             <CardActionArea>
               <CardMedia
-                onClick={() => handleGoToTeamsPage(league.idLeague)}
                 height="140"
                 component="img"
                 image={
