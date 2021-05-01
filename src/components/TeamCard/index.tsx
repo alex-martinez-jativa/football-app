@@ -8,13 +8,12 @@ import Slide from "@material-ui/core/Slide";
 type Props = {
   name: string;
   image: string;
-  handleGetLeaguesByCountry: (country: string) => void;
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
     backgroundColor: theme.palette.primary.light,
-    maxWidth: "10rem",
+    maxWidth: "25rem",
     minWidth: "10rem",
     display: "flex",
     flexDirection: "column",
@@ -24,9 +23,15 @@ const useStyles = makeStyles((theme: Theme) => ({
     cursor: "pointer",
     margin: "1rem",
     boxShadow: "0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%)",
+    textAlign: "center",
+    padding: "0.5rem",
+    "&:hover": {
+      transform: "scale(2)",
+    },
     [theme.breakpoints.down("sm")]: {
-      minWidth: "8rem",
+      minWidth: "9rem",
       maxWidth: "8rem",
+      margin: "0.5rem",
     },
   },
   title: {
@@ -41,22 +46,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const CountryCard: React.FC<Props> = ({
-  name,
-  image,
-  handleGetLeaguesByCountry,
-}) => {
+const TeamCard: React.FC<Props> = ({ name, image }) => {
   const classes = useStyles();
-  const handleOnClick = (country: string) => {
-    handleGetLeaguesByCountry(country);
-  };
+
   return (
     <Slide in={true} direction="left" timeout={500}>
-      <Box
-        data-testid="card-test"
-        className={classes.box}
-        onClick={() => handleOnClick(name)}
-      >
+      <Box className={classes.box}>
         <Typography variant="h5" className={classes.title}>
           {name}
         </Typography>
@@ -66,4 +61,4 @@ const CountryCard: React.FC<Props> = ({
   );
 };
 
-export default CountryCard;
+export default TeamCard;

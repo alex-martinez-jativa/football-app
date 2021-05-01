@@ -47,7 +47,9 @@ const LeaguesListPage: React.FC = () => {
       {/**TODO ERROR HANDLING IN UI */}
       {error && <h1>Error</h1>}
       <GoBackComponent goBack={handleGoBack} />
-      {leagues && leagues.length > 0 && <Title title="Select your league" />}
+      {!loading && leagues && leagues.length > 0 && (
+        <Title title="Select your league" />
+      )}
       <Grid item xs={12} className={classes.cardsGrid}>
         {!loading &&
           leagues &&

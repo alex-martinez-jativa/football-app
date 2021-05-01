@@ -61,7 +61,7 @@ const CountryList: React.FC = () => {
   };
   return (
     <>
-      <Title title="Select your country" />
+      <Title title="Select one Country" />
       <Grid item xs={12} className={classes.cardsGrid}>
         {countrys.map((c) => {
           return (
