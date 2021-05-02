@@ -3,18 +3,18 @@ import { Dispatch } from "redux";
 import { League, Leagues } from "../../../domain/models/League";
 import { leaguesService } from "../../../domain/services/leagues-services";
 
-const getLeaguesRequest = () => {
+export const getLeaguesRequest = () => {
   return { type: types.GET_LEAGUES_REQUEST };
 };
 
-const getLeaguesSuccess = (leagues: League[]) => {
+export const getLeaguesSuccess = (leagues: League[]) => {
   return {
     type: types.GET_LEAGUES_SUCCESS,
     payload: leagues,
   };
 };
 
-const getLeaguesError = () => {
+export const getLeaguesError = () => {
   return {
     type: types.GET_LEAGUES_ERROR,
   };

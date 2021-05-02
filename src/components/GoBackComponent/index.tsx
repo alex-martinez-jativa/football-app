@@ -28,9 +28,13 @@ const GoBackComponent: React.FC<IGobackComponent> = ({ goBack }) => {
     <>
       <ContainerBar>
         <Grid item xs={12} className={classes.grid}>
-          <ArrowBackIosIcon onClick={goBack} className={classes.arrow} />
+          <ArrowBackIosIcon
+            data-testid="arrow"
+            onClick={goBack}
+            className={classes.arrow}
+          />
           <Typography onClick={goBack} className={classes.arrow} variant="h6">
-            Go back
+            Go Back
           </Typography>
         </Grid>
       </ContainerBar>

@@ -9,7 +9,7 @@ export interface League {
   idCup: string;
   strCurrentSeason: string;
   intFormedYear: string;
-  dateFirstEvent: Date;
+  dateFirstEvent: string;
   strGender: string;
   strCountry: string;
   strWebsite: string;

@@ -35,8 +35,6 @@ const TeamsPage: React.FC = () => {
     }
   );
 
-  console.log(teams);
-
   const dispatch = useDispatch();
 
   const hanleGoBack = () => {

@@ -58,7 +58,11 @@ const LeagueItem: React.FC<IItemProps> = ({ text, logo, id }) => {
   };
   return (
     <Slide in={true} timeout={500} direction="left">
-      <Box className={classes.box} onClick={() => handleGetLeague(id)}>
+      <Box
+        data-testid="card-test"
+        className={classes.box}
+        onClick={() => handleGetLeague(id)}
+      >
         <React.Fragment>
           <Typography variant="h6" className={classes.title}>
             {text}
