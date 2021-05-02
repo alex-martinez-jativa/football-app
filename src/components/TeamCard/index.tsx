@@ -13,8 +13,8 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
     backgroundColor: theme.palette.primary.light,
-    maxWidth: "25rem",
-    minWidth: "10rem",
+    maxWidth: "20rem",
+    minWidth: "20rem",
     display: "flex",
     flexDirection: "column",
     justifyContent: "start",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     textAlign: "center",
     padding: "0.5rem",
     "&:hover": {
-      transform: "scale(2)",
+      backgroundColor: theme.palette.primary.dark,
     },
     [theme.breakpoints.down("sm")]: {
       minWidth: "9rem",

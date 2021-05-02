@@ -7,7 +7,6 @@ export const teamsRepository = {
     const teams = await http.get<Teams>(
       `${API_URL}/lookup_all_teams.php?id=${leagueId}`
     );
-    debugger;
     return teams;
   },
 };

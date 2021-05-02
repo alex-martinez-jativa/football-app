@@ -3,43 +3,45 @@ import { useHistory } from "react-router-dom";
 import Typography from "@material-ui/core/Typography";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
+import useTheme from "@material-ui/core/styles/useTheme";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Box from "@material-ui/core/Box";
 import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
-    backgroundColor: theme.palette.primary.dark,
-    minWidth: "35rem",
-    maxWidth: "35rem",
-    minHeight: "5rem",
+    backgroundColor: theme.palette.primary.light,
+    minWidth: "30rem",
+    maxWidth: "30rem",
+    height: "7.394rem",
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignContent: "center",
     alignItems: "center",
     borderRadius: "1rem",
     cursor: "pointer",
     margin: "1rem",
     [theme.breakpoints.down("sm")]: {
-      minWidth: "90%",
-      maxWidth: "90%",
+      minWidth: "10rem",
+      width: "10rem",
+      height: "5rem",
+      flexDirection: "column",
     },
     "&:hover": {
       boxShadow: "0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%)",
     },
   },
   title: {
-    marginLeft: "0.5rem",
     color: theme.palette.background.default,
+    textAlign: "center",
   },
   logo: {
-    maxWidth: "25%",
-    marginRight: "0.5rem;",
-    backgroundColor: theme.palette.primary.light,
+    maxWidth: "50%",
     padding: "0.5rem",
     borderRadius: "1rem",
     [theme.breakpoints.down("sm")]: {
-      maxWidth: "40%",
+      maxWidth: "80%",
     },
   },
 }));
@@ -53,9 +55,17 @@ interface IItemProps {
 const LeagueItem: React.FC<IItemProps> = ({ text, logo, id }) => {
   const classes = useStyles();
   const history = useHistory();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("sm"));
   const handleGetLeague = (id: string) => {
     history.push(`/league/${id}`);
   };
+
+  const getTextVariant = () => {
+    if (matches) return "body1";
+    if (!matches) return "h6";
+  };
+
   return (
     <Slide in={true} timeout={500} direction="left">
       <Box
@@ -64,10 +74,12 @@ const LeagueItem: React.FC<IItemProps> = ({ text, logo, id }) => {
         onClick={() => handleGetLeague(id)}
       >
         <React.Fragment>
-          <Typography variant="h6" className={classes.title}>
-            {text}
-          </Typography>
           {logo && <img src={logo} alt="logo" className={classes.logo} />}
+          {!logo && (
+            <Typography variant={getTextVariant()} className={classes.title}>
+              {text}
+            </Typography>
+          )}
         </React.Fragment>
       </Box>
     </Slide>
