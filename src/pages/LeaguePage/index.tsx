@@ -19,6 +19,7 @@ import openExternalSite from "../../utils/open-external-site";
 import { useDispatch } from "react-redux";
 import getLeagueAction from "../../redux/actions/getLeagueAction";
 import Title from "../../components/Title";
+import TeamsComponent from "../../components/TeamsComponent";
 
 type RouteParams = {
   id: string;
@@ -39,6 +40,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   image: {
     maxWidth: "100%",
     height: "auto",
+    minHeight: "140px",
     padding: "1rem",
     margin: "0 auto",
     "&:hover": {
@@ -55,6 +57,7 @@ const LeaguePage: React.FC = () => {
   const classes = useStyles();
   const history = useHistory();
   const { id } = useParams<RouteParams>();
+  const [showTeams, setShowTeams] = React.useState(false);
   const dispatch = useDispatch();
   const { league, loading }: any = useSelector<IInitialState | any>(
     (state: IInitialState) => state.leagues
@@ -68,8 +71,8 @@ const LeaguePage: React.FC = () => {
     history.goBack();
   };
 
-  const handleGoToTeamsPage = (leagueId: string) => {
-    history.push(`/${leagueId}/teams`);
+  const handleGoToTeams = () => {
+    setShowTeams(true);
   };
 
   React.useEffect(() => {
@@ -79,15 +82,12 @@ const LeaguePage: React.FC = () => {
   return (
     <>
       <GoBackComponent goBack={handleGoBack} />
-      {!loading && league.idLeague && (
+      {!showTeams && !loading && league.idLeague && (
         <Fade in timeout={500}>
           <>
             <Title title={league.strLeagueAlternate || league.strLeague} />
             <Grid item xs={12} className={classes.container}>
-              <Card
-                className={classes.root}
-                onClick={() => handleGoToTeamsPage(league.idLeague)}
-              >
+              <Card className={classes.root} onClick={() => handleGoToTeams()}>
                 <CardActionArea>
                   <CardMedia
                     height="140"
@@ -119,7 +119,7 @@ const LeaguePage: React.FC = () => {
                   <Button
                     size="small"
                     color="primary"
-                    onClick={() => handleGoToTeamsPage(league.idLeague)}
+                    onClick={() => handleGoToTeams()}
                   >
                     View Teams
                   </Button>
@@ -131,13 +131,19 @@ const LeaguePage: React.FC = () => {
                     Go to website
                   </Button>
                   <Button size="small" color="primary">
-                    Share
+                    Save League
                   </Button>
                 </CardActions>
               </Card>
             </Grid>
           </>
         </Fade>
+      )}
+      {showTeams && (
+        <TeamsComponent
+          leagueId={league.idLeague}
+          leagueName={league.strLeague}
+        />
       )}
     </>
   );

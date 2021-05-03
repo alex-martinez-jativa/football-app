@@ -11,8 +11,8 @@ import Slide from "@material-ui/core/Slide";
 const useStyles = makeStyles((theme: Theme) => ({
   box: {
     backgroundColor: theme.palette.primary.light,
-    minWidth: "30rem",
-    maxWidth: "30rem",
+    minWidth: "20rem",
+    maxWidth: "20rem",
     height: "7.394rem",
     display: "flex",
     flexDirection: "row",
@@ -35,9 +35,11 @@ const useStyles = makeStyles((theme: Theme) => ({
   title: {
     color: theme.palette.background.default,
     textAlign: "center",
+    padding: "0 0.5rem 0 0.5rem",
+    overflow: "hidden",
   },
   logo: {
-    maxWidth: "50%",
+    maxWidth: "60%",
     padding: "0.5rem",
     borderRadius: "1rem",
     [theme.breakpoints.down("sm")]: {

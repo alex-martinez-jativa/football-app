@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme: Theme) => ({
     flexDirection: "row",
     justifyContent: "center",
     flexWrap: "wrap",
+    margin: "0 auto",
   },
 }));
 
@@ -50,6 +51,7 @@ const LeaguesListPage: React.FC = () => {
       {!loading && leagues && leagues.length > 0 && (
         <Title title="Select one League" />
       )}
+
       <Grid item xs={12} className={classes.cardsGrid}>
         {!loading &&
           leagues &&
