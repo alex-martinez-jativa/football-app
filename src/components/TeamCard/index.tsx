@@ -8,6 +8,7 @@ import Slide from "@material-ui/core/Slide";
 type Props = {
   name: string;
   image: string;
+  goToTeamPage: () => void;
 };
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -46,12 +47,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 
-const TeamCard: React.FC<Props> = ({ name, image }) => {
+const TeamCard: React.FC<Props> = ({ name, image, goToTeamPage }) => {
   const classes = useStyles();
 
   return (
     <Slide in={true} direction="left" timeout={500}>
-      <Box className={classes.box}>
+      <Box className={classes.box} onClick={goToTeamPage}>
         <Typography variant="h5" className={classes.title}>
           {name}
         </Typography>

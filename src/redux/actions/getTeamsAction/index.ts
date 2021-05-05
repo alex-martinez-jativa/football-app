@@ -25,7 +25,6 @@ const getTeamsAction = (leagueId: string) => {
     try {
       dispatch(getTeamsRequest());
       const { teams }: Teams = await teamsServices.getTeamsByLeagueId(leagueId);
-      debugger;
       dispatch(getTeamsSuccess(teams));
     } catch (error) {
       dispatch(getTeamsError());

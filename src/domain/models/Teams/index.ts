@@ -67,3 +67,7 @@ export interface Team {
 export interface Teams {
   teams: Team[];
 }
+
+export interface SingleTeam {
+  teams: Team[];
+}

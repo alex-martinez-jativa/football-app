@@ -4,7 +4,6 @@ import AppBarComponent from "../AppBar";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-import useTheme from "@material-ui/core/styles/useTheme";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 
@@ -24,8 +23,7 @@ const useStyles = makeStyles((theme: Theme) => ({
 
 const Header: React.FC = () => {
   const classes = useStyles();
-  const theme = useTheme();
-  const matches = useMediaQuery(theme.breakpoints.down("sm"));
+  const matches = useMediaQuery("(max-width:599px)");
 
   const history = useHistory();
 

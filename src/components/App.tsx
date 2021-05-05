@@ -6,6 +6,7 @@ import Home from "../pages/Home";
 import Header from "../components/Header";
 import LeaguePage from "../pages/LeaguePage";
 import LeaguesListPage from "../pages/LeaguesListPage";
+import TeamPage from "../pages/TeamPage";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
         <Route path="/home" render={() => <Home />} />
         <Route path="/:country/leagues" render={() => <LeaguesListPage />} />
         <Route path="/league/:id" render={() => <LeaguePage />} />
+        <Route path="/team/:teamid" render={() => <TeamPage />} />
       </Switch>
     </Provider>
   );

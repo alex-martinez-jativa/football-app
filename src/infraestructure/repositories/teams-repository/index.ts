@@ -1,5 +1,5 @@
 import { http } from "../../http";
-import { Teams } from "../../../domain/models/Teams";
+import { Teams, SingleTeam } from "../../../domain/models/Teams";
 import { API_URL } from "../../../constants";
 
 export const teamsRepository = {
@@ -8,5 +8,11 @@ export const teamsRepository = {
       `${API_URL}/lookup_all_teams.php?id=${leagueId}`
     );
     return teams;
+  },
+  getTeamById: async (teamId: string) => {
+    const team = await http.get<SingleTeam>(
+      `${API_URL}/lookupteam.php?id=${teamId}`
+    );
+    return team;
   },
 };

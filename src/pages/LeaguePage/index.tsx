@@ -143,6 +143,7 @@ const LeaguePage: React.FC = () => {
         <TeamsComponent
           leagueId={league.idLeague}
           leagueName={league.strLeague}
+          banner={league.strBanner}
         />
       )}
     </>

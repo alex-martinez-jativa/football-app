@@ -1,4 +1,4 @@
-import { League } from "../../../domain/models/League";
+import { League, SingleLeague } from "../../../domain/models/League";
 import { AnyAction } from "redux";
 import * as types from "../../actionTypes";
 

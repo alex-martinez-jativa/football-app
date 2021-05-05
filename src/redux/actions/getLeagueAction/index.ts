@@ -14,22 +14,22 @@ export const getLeagueSuccess = (league: League) => {
   };
 };
 
-export const getLeaguesError = () => {
+export const getLeagueError = () => {
   return {
     type: types.GET_LEAGUE_ERROR,
   };
 };
 
-const getLeaguesAction = (id: string) => {
+const getLeagueAction = (id: string) => {
   return async (dispatch: Dispatch) => {
     try {
       dispatch(getLeagueRequest());
       const { leagues }: SingleLeague = await leaguesService.getLeagueById(id);
       dispatch(getLeagueSuccess(leagues[0]));
     } catch (error) {
-      dispatch(getLeaguesError());
+      dispatch(getLeagueError());
     }
   };
 };
 
-export default getLeaguesAction;
+export default getLeagueAction;
