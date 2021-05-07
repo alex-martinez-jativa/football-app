@@ -1,4 +1,4 @@
-# Footbal application
+# :soccer: Football application
 
 :hammer_and_wrench: IN PROGRESS
 
@@ -11,6 +11,7 @@ Application with information about leagues and teams from different countries.
 [the sports db api](https://www.thesportsdb.com/api.php)
 
 ## Technologies
+
  <ul>
     <li>React</li>
     <li>Typescript</li>
@@ -20,6 +21,6 @@ Application with information about leagues and teams from different countries.
     <li>Jest</li>
  </ul>
 
- ### Architecture
+### Architecture
 
- Hexagonal Architecture
+Hexagonal Architecture
