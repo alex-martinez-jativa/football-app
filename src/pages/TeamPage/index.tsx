@@ -1,10 +1,12 @@
-import React from "react";
+import React, { ChangeEvent } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import clsx from "clsx";
 import { Theme } from "@material-ui/core/styles/createMuiTheme";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
 import { useDispatch, useSelector } from "react-redux";
 import { ITeamsInitialState } from "../../redux/reducers/teamsReducer";
 import getTeamAction from "../../redux/actions/getTeamAction";
@@ -21,46 +23,16 @@ const useStyles = makeStyles((theme: Theme) => ({
     height: "100%",
     display: "flex",
     flexDirection: "row",
-    padding: "2rem",
   },
-  badgeGrid: {
-    border: "1px solid black",
-    width: "10rem",
+  tabsGrid: {
     display: "flex",
-    flexDirection: "column",
-  },
-  badge: {
-    width: "20%",
-    marginBottom: "0.5rem",
-    alignSelf: "center",
-  },
-  teamInfo: {
-    margin: "2rem auto",
-  },
-  textItem: {
-    display: "flex",
-  },
-  itemTitle: {
-    marginRight: "0.5rem",
-  },
-  shirtGrid: {
-    display: "flex",
-    alignItems: "center",
-    marginTop: "1rem",
-  },
-  contentGrid: {
-    boder: "1px solid red",
-  },
-  textBold: {
-    fontWeight: "bold",
-  },
-  textCenter: {
-    alignSelf: "center",
+    justifyContent: "center",
   },
 }));
 
 const TeamPage: React.FC = () => {
   const classes = useStyles();
+  const [value, setValue] = React.useState(0);
   const { teamid } = useParams<ParamsType>();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -76,74 +48,35 @@ const TeamPage: React.FC = () => {
     history.goBack();
   };
 
+  function a11yProps(index: number) {
+    return {
+      id: `simple-tab-${index}`,
+      "aria-controls": `simple-tabpanel-${index}`,
+    };
+  }
+
+  const handleChange = (event: ChangeEvent<{}>, newValue: number) => {
+    setValue(newValue);
+  };
+
   return (
     <>
       <GoBackComponent goBack={handleGoBack} />
-      <Grid item xs={12} className={classes.container}>
-        <Grid item xs={4} className={classes.badgeGrid}>
-          <img src={team.strTeamBadge} alt="badge" className={classes.badge} />
-          <Typography className={classes.textCenter} variant="h5">
-            {team.strTeam}
-          </Typography>
-          <Typography
-            className={clsx(classes.textBold, classes.textCenter)}
-            variant="subtitle1"
-          >
-            {team.intFormedYear}
-          </Typography>
-          <Grid item xs={12} className={classes.teamInfo}>
-            <Grid item className={classes.textItem}>
-              <Typography
-                className={clsx(classes.textBold, classes.itemTitle)}
-                variant="subtitle1"
-              >
-                League:
-              </Typography>
-              <Typography variant="subtitle1">{team.strLeague}</Typography>
-            </Grid>
-            <Grid item className={classes.textItem}>
-              <Typography
-                className={clsx(classes.textBold, classes.itemTitle)}
-                variant="subtitle1"
-              >
-                Stadium:
-              </Typography>
-              <Typography variant="subtitle1">{team.strStadium}</Typography>
-            </Grid>
-            <Grid item className={classes.textItem}>
-              <Typography
-                className={clsx(classes.textBold, classes.itemTitle)}
-                variant="subtitle1"
-              >
-                Location:
-              </Typography>
-              <Typography variant="subtitle1">
-                {team.strStadiumLocation}
-              </Typography>
-            </Grid>
-            <Grid item className={classes.textItem}>
-              <Typography
-                className={clsx(classes.textBold, classes.itemTitle)}
-                variant="subtitle1"
-              >
-                Country:
-              </Typography>
-              <Typography variant="subtitle1">{team.strCountry}</Typography>
-            </Grid>
-            <Grid item xs={12} className={classes.shirtGrid}>
-              <Typography className={classes.textBold} variant="subtitle1">
-                Jersey:
-              </Typography>
-              <img
-                src={team.strTeamJersey || NO_TEAM_JERSEY}
-                alt="shirt"
-                className={classes.badge}
-              />
-            </Grid>
+      {!loading && (
+        <Grid item xs={12} className={classes.container}>
+          <Grid item xs={12} className={classes.tabsGrid}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="simple tabs example"
+            >
+              <Tab label="Item One" {...a11yProps(0)} />
+              <Tab label="Item Two" {...a11yProps(1)} />
+              <Tab label="Item Three" {...a11yProps(2)} />
+            </Tabs>
           </Grid>
         </Grid>
-        <Grid item xs={8} className={classes.contentGrid}></Grid>
-      </Grid>
+      )}
     </>
   );
 };

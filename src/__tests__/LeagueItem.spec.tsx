@@ -13,12 +13,16 @@ describe("<LeagueItem />", () => {
   const text = "text-test";
   const logo = "logo-test";
   const id = "id-test";
-  it("render component text and logo", () => {
+  it("render component only logo", () => {
     render(<LeagueItem text={text} logo={logo} id={id} />);
-
-    expect(screen.getByText(text)).toBeInTheDocument();
+    expect(screen.queryByText(text)).not.toBeInTheDocument();
     expect(screen.getByRole("img")).toBeInTheDocument();
     expect(screen.getByRole("img")).toHaveAttribute("src", logo);
+  });
+  it("render component only text", () => {
+    render(<LeagueItem text={text} id={id} />);
+    expect(screen.getByText(text)).toBeInTheDocument();
+    expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
 
   it("click event", () => {

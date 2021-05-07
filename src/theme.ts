@@ -17,11 +17,11 @@ const theme = createMuiTheme({
       dark: colors.primaryDark,
       light: colors.primaryLight,
     },
-    secondary: {
+    /* secondary: {
       main: colors.secondary,
       light: colors.secondaryLight,
       dark: colors.secondaryDark,
-    },
+    }, */
     background: {
       default: colors.background,
     },

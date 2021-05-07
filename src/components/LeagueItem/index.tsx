@@ -49,8 +49,8 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 interface IItemProps {
-  text: string;
-  logo: string;
+  text?: string;
+  logo?: string;
   id: string;
 }
 

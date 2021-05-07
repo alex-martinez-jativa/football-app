@@ -19,15 +19,14 @@ describe("leaguesRepository", () => {
     expect(response).toEqual({ mockLeagues });
   });
   it("getLeagueById", async () => {
-    const country = "4400";
+    const leagueID = "4400";
 
     const fakeFetch = jest.fn();
     window.fetch = fakeFetch.mockResolvedValueOnce({
       status: 200,
       json: async () => ({ mockSingleLeague }),
     });
-
-    const response = await leaguesRepository.getLeagueById(country);
+    const response = await leaguesRepository.getLeagueById(leagueID);
     expect(response).not.toBeUndefined();
     expect(response).toEqual({ mockSingleLeague });
   });

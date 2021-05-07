@@ -21,12 +21,13 @@ const useStyles = makeStyles((theme: Theme) => ({
   banner: {
     display: "flex",
     justifyContent: "center",
-    marginTop: "0.5rem",
+    width: "100%",
   },
   imageBanner: {
-    borderRadius: "20px",
-    maxWidth: "80%",
-    height: "8rem",
+    maxWidth: "100%",
+    height: "auto",
+    maxHeight: "8rem",
+    objectFit: "cover",
   },
 }));
 
