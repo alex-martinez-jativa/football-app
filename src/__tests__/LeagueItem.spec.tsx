@@ -1,10 +1,13 @@
 import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import LeagueItem from "../components/LeagueItem";
+
+const mockHistoryPush = jest.fn();
+
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
   useHistory: () => ({
-    push: jest.fn(),
+    push: mockHistoryPush,
   }),
 }));
 
@@ -25,10 +28,12 @@ describe("<LeagueItem />", () => {
     expect(screen.queryByRole("img")).not.toBeInTheDocument();
   });
 
-  it("click event", () => {
+  it("click on league item", () => {
     render(<LeagueItem text={text} logo={logo} id={id} />);
 
     const element = screen.getByTestId("card-test");
     userEvent.click(element);
+    expect(mockHistoryPush).toHaveBeenCalled();
+    expect(mockHistoryPush).toHaveBeenCalledWith(`/league/${id}`);
   });
 });
