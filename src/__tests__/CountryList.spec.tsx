@@ -40,12 +40,12 @@ const countrys = [
 
 describe("<CountryList />", () => {
   afterEach(() => cleanup());
-  it("render title", async () => {
+  it("render title", () => {
     render(<CountryList />);
 
     expect(screen.getByText("Select one Country")).toBeInTheDocument();
   });
-  it("render country names", async () => {
+  it("render country names", () => {
     render(<CountryList />);
 
     expect(screen.getByText("Select one Country")).toBeInTheDocument();
@@ -54,7 +54,7 @@ describe("<CountryList />", () => {
       expect(screen.getByText(country.name)).toBeInTheDocument();
     });
   });
-  it("render images", async () => {
+  it("render images", () => {
     render(<CountryList />);
 
     const images = screen.getAllByRole("img");

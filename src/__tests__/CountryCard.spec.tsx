@@ -2,6 +2,15 @@ import { render, screen, cleanup } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import CountryCard from "../components/CountryCard";
 
+const mockHistoryPush = jest.fn();
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useHistory: () => ({
+    push: mockHistoryPush,
+  }),
+}));
+
 describe("<CountryCard />", () => {
   afterEach(() => cleanup());
   it("render component", () => {
@@ -43,5 +52,6 @@ describe("<CountryCard />", () => {
 
     expect(handleGetLeaguesByCountry).toHaveBeenCalledTimes(1);
     expect(handleGetLeaguesByCountry).not.toHaveBeenCalledTimes(2);
+    expect(handleGetLeaguesByCountry).toHaveBeenCalledWith(name);
   });
 });
